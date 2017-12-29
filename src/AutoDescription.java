@@ -29,7 +29,10 @@ public class AutoDescription implements ICustomAction{
                 IRow row = (IRow) it.next();
                 IItem item = (IItem) row.getReferent();     // 直接抓那 row 物件
                 String itemNumber = item.getName();
+                System.out.println();
                 System.out.println("Part Number: " + itemNumber);
+/*
+                // get subclasss name
                 IAgileClass classes = session.getAdminInstance().getAgileClass("10CPU");
                 IAgileClass classes2 =item.getAgileClass();
 
@@ -40,7 +43,7 @@ public class AutoDescription implements ICustomAction{
                 System.out.println("Class Name : " + classes2.getName());
                 System.out.println("ID : " + classes2.getId());
                 System.out.println("API Name : "+classes2.getAPIName());
-
+*/
                 result+= readExcel(filepath, item, change);
                 row.setValue(ChangeConstants.ATT_AFFECTED_ITEMS_ITEM_DESCRIPTION,result);
 
@@ -83,13 +86,23 @@ public class AutoDescription implements ICustomAction{
 
             for(int i = 1; i <rowlength; i++) {
                 System.out.println("開始找Subclass");
-                row = sheet.getRow(i);
-                String sub = row.getCell(2).toString();
-                sub = sub.substring(1,3) + sub.substring(4,sub.length());
-                String DES = row.getCell(3).toString();
+                String sub = "";
+                String DES = "";
+                try {
+                    row = sheet.getRow(i);
+                    sub = row.getCell(2).toString();
+                    sub = sub.substring(1,3) + sub.substring(4,sub.length());
+                     DES = row.getCell(3).toString();
+                }catch (NullPointerException e)
+                {
+                    e.getMessage();
+                    e.printStackTrace();
+                    continue;
+                }
                 System.out.println("DES: "+DES);
                 System.out.println("Cell 3: "+sub );
                 System.out.println(subClass.equals(sub)); // T or F
+
                 if (subClass.equals(sub)) { // match subclass
                     for (int j = 4; j < columnlength; j++) {          // 看每個組成
                         String excelCell = row.getCell(j) + "";
@@ -117,8 +130,8 @@ public class AutoDescription implements ICustomAction{
                                     Description += ProductNameValue +" " ;
                                     System.out.println("**" + excelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
                                 }else if (atr.getDataType()==4) {// 組成為list
-                                    // list 加其description 不直接加 name
-                                    if(item.getValue("Page Three." + excelCell).toString()=="") {
+                                                                 // list 加其description 不直接加 name
+                                    if(item.getValue("Page Three." + excelCell).toString()=="") {   // 若有對應的list，但是沒值
                                         System.out.println("Field Name:" + excelCell + " -> No Value");
                                         Description += "█" + item + ": Field:" + excelCell + " -> No Value ";
                                         System.out.println("**" + excelCell + "::ProductNameValue:" + " null " + ",ProductName:" + Description);
@@ -128,6 +141,12 @@ public class AutoDescription implements ICustomAction{
                                     ICell listCell2 = item.getCell("Page Three." + excelCell);
                                     IAgileList list2 = (IAgileList)listCell2.getValue();
                                     String ProductNameValue = ((IAgileList)list2.getChild(tmp2)).getDescription();
+                                    if(ProductNameValue==null) {
+                                        ProductNameValue = "";
+                                        Description += ProductNameValue;
+                                        System.out.println("**" + excelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
+                                        continue;
+                                    }
                                     Description += ProductNameValue + " ";
                                     System.out.println("**" + excelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
                                 }
