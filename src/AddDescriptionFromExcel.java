@@ -68,6 +68,9 @@ public class AddDescriptionFromExcel implements ICustomAction{
         String result = "";
         String Description = "";
         try {
+            // item.getValue("Page Three" + Column Name )==""      ->true, 系統有此欄位但沒有值
+            // item.getCell("Page Three." + Column Name )==null    ->true, 系統沒有此欄位
+
             // 用API Name去比對
             // get Api Name of item in the list
             String tmp =  item.getValue(2020).toString();

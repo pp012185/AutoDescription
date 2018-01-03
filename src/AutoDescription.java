@@ -31,6 +31,7 @@ public class AutoDescription implements ICustomAction{
                 String itemNumber = item.getName();
                 System.out.println();
                 System.out.println("Part Number: " + itemNumber);
+
 /*
                 // get subclasss name
                 IAgileClass classes = session.getAdminInstance().getAgileClass("10CPU");
@@ -46,7 +47,6 @@ public class AutoDescription implements ICustomAction{
 */
                 result+= readExcel(filepath, item, change);
                 row.setValue(ChangeConstants.ATT_AFFECTED_ITEMS_ITEM_DESCRIPTION,result);
-
 
             }
             System.out.println("------ End ------");
@@ -65,15 +65,8 @@ public class AutoDescription implements ICustomAction{
         String result = "";
         String Description = "";
         try {
+
             // 用API Name去比對
-            // get Api Name of Subclass
-            /*
-            String tmp =  item.getValue(2020).toString();
-            ICell listCell = item.getCell(2020);      // 1081 -> Title block/ Part Type
-            IAgileList list = (IAgileList)listCell.getValue();
-            String subClass = ((IAgileList)list.getChild(tmp)).getAPIName().toString();
-            System.out.println("API subClass:" + subClass);
-            */
             IAgileClass classes =item.getAgileClass();
             String subClass = classes.getAPIName();
 
@@ -104,44 +97,62 @@ public class AutoDescription implements ICustomAction{
                 System.out.println(subClass.equals(sub)); // T or F
 
                 if (subClass.equals(sub)) { // match subclass
+
                     for (int j = 4; j < columnlength; j++) {          // 看每個組成
                         String excelCell = row.getCell(j) + "";
-                        if (!"null".equals(excelCell)&&("" + row.getCell(j)).length()!=0) { // excel field not null
-                            if(excelCell.equals("end")){
+                        if (!"null".equals(excelCell) && ("" + row.getCell(j)).length() != 0) { // excel field not null
+                            if (excelCell.equals("end")) {
                                 break;
                             } else if (excelCell.contains("$")) {            // e.g. $abc -> abc
                                 String value = excelCell.substring(1, excelCell.length());
-                                Description +=  value + " ";
-                            } else if(excelCell.contains("!")){       // 後面不要空格
-                                String NewExcelCell= excelCell.substring(0,excelCell.length()-1);
+                                Description += value + " ";
+                            } else if (excelCell.contains("!")) {       // 後面不要空格
+                                String NewExcelCell = excelCell.substring(0, excelCell.length() - 1);
                                 String ProductNameValue = item.getValue("Page Three." + NewExcelCell) + "";
                                 Description += ProductNameValue;
                                 System.out.println("**" + NewExcelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
-                            }else if (item.getCell("Page Three." + excelCell) == null) { // no this field
+                            }if(excelCell.contains("*")){
+                                if (excelCell.substring(0,0)=="*"){                       // "*"號在第一個 => 看前一個組欄位
+                                    String preexcelCell = row.getCell(j-1)+"";  // 抓前一個欄位名稱
+                                    if(item.getValue(preexcelCell)==""){                  // 前一欄位沒有值
+                                        continue;
+                                    }else {                                               // 前一個欄位有值 => 當字串填入
+                                        String value = excelCell.substring(1, excelCell.length());
+                                        Description += value + " ";
+                                    }
+                                }else if(excelCell.substring(excelCell.length(),excelCell.length())=="*"){      // "*"號在最後一個 => 看後一個欄位
+                                    String postexcelCell = row.getCell(j+1)+"";                        // 抓後一個欄位名稱
+                                    if(item.getValue(postexcelCell)==""){                                        // 後一欄位沒有值
+                                        continue;
+                                    }else {                                                                     // 後一個欄位有值 => 當字串填入
+                                        String value = excelCell.substring(0, (excelCell.length()-1));
+                                        Description += value + " ";
+                                    }
+                                }
+                            } else if (item.getCell("Page Three." + excelCell) == null) { // System no this field  (要用getCell !!!)
                                 //System.out.println(item.getCell(1541).getName());
                                 System.out.println("no field:" + row.getCell(j));
-                                Description += "█" + item + ":no field:" + row.getCell(j) +" ";
-                            }  else {// excel field==PLM field
+                                Description += "█" + item + ":no field:" + row.getCell(j) + " ";
+                            } else {// excel field==PLM field
+
                                 IAgileClass cls = item.getAgileClass();
                                 IAttribute atr = cls.getAttribute("Page Three." + excelCell);
                                 System.out.println(atr.getDataType());
-                                if (atr.getDataType()==2) { // 組成為text
+                                if (atr.getDataType() == 2) { // 組成為text
                                     String ProductNameValue = item.getValue("Page Three." + excelCell) + "";
-                                    Description += ProductNameValue +" " ;
+                                    Description += ProductNameValue + " ";
                                     System.out.println("**" + excelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
-                                }else if (atr.getDataType()==4) {// 組成為list
-                                                                 // list 加其description 不直接加 name
-                                    if(item.getValue("Page Three." + excelCell).toString()=="") {   // 若有對應的list，但是沒值
+                                } else if (atr.getDataType() == 4) {// 組成為list
+                                    // list 加其description 不直接加 name
+                                    if (item.getValue("Page Three." + excelCell).toString() == "") {   // 若有對應的list，但是沒值
                                         System.out.println("Field Name:" + excelCell + " -> No Value");
-                                        Description += "█" + item + ": Field:" + excelCell + " -> No Value ";
-                                        System.out.println("**" + excelCell + "::ProductNameValue:" + " null " + ",ProductName:" + Description);
                                         continue;
                                     }
                                     String tmp2 = item.getValue("Page Three." + excelCell).toString();
                                     ICell listCell2 = item.getCell("Page Three." + excelCell);
-                                    IAgileList list2 = (IAgileList)listCell2.getValue();
-                                    String ProductNameValue = ((IAgileList)list2.getChild(tmp2)).getDescription();
-                                    if(ProductNameValue==null) {
+                                    IAgileList list2 = (IAgileList) listCell2.getValue();
+                                    String ProductNameValue = ((IAgileList) list2.getChild(tmp2)).getDescription();
+                                    if (ProductNameValue == null) {
                                         ProductNameValue = "";
                                         Description += ProductNameValue;
                                         System.out.println("**" + excelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
@@ -153,7 +164,7 @@ public class AutoDescription implements ICustomAction{
                             }
                         }
                     }
-                    //System.out.println();
+
                 }
                 if (!Description.equals("")) {
                     result = Description;
