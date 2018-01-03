@@ -178,6 +178,12 @@ public class AutoDescription implements ICustomAction{
                                 //System.out.println(item.getCell(1541).getName());
                                 System.out.println("no field:" + row.getCell(j));
                                 Description += "█" + item + ":no field:" + row.getCell(j) + " ";
+                                continue;
+                            } else if(excelCell.contains("!") && item.getCell("Page Three." + excelCell.substring(0,excelCell.length()-1)) == null){
+                                //System.out.println(item.getCell(1541).getName());
+                                System.out.println("no field:" + row.getCell(j));
+                                Description += "█" + item + ":no field:" + row.getCell(j) + " ";
+                                continue;
                             } else {// excel field==PLM field
                                 if(excelCell.contains("!")){
                                     String NewExcelCell = excelCell.substring(0, excelCell.length() - 1);
