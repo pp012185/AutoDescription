@@ -104,63 +104,154 @@ public class AutoDescription implements ICustomAction{
                             if (excelCell.equals("end")) {
                                 break;
                             } else if (excelCell.contains("$")) {            // e.g. $abc -> abc
-                                String value = excelCell.substring(1, excelCell.length());
-                                Description += value + " ";
-                            } else if (excelCell.contains("!")) {       // 後面不要空格
-                                String NewExcelCell = excelCell.substring(0, excelCell.length() - 1);
-                                String ProductNameValue = item.getValue("Page Three." + NewExcelCell) + "";
-                                Description += ProductNameValue;
-                                System.out.println("**" + NewExcelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
-                            }if(excelCell.contains("*")){
-                                if (excelCell.substring(0,0)=="*"){                       // "*"號在第一個 => 看前一個組欄位
-                                    String preexcelCell = row.getCell(j-1)+"";  // 抓前一個欄位名稱
-                                    if(item.getValue(preexcelCell)==""){                  // 前一欄位沒有值
-                                        continue;
-                                    }else {                                               // 前一個欄位有值 => 當字串填入
-                                        String value = excelCell.substring(1, excelCell.length());
-                                        Description += value + " ";
+                                if(excelCell.contains("!")){
+                                    String value = excelCell.substring(1, (excelCell.length()-1));
+                                    Description += value ;
+                                }else{
+                                    String value = excelCell.substring(1, excelCell.length());
+                                    Description += value + " ";
+                                }
+                            }else if(excelCell.contains("*")){
+                                if(excelCell.contains("!")){
+                                    System.out.println(excelCell+" Contain *,! ");
+                                    System.out.println("頭: "+excelCell.substring(0,1));
+                                    System.out.println("尾: "+excelCell.substring(excelCell.length()-1,excelCell.length()));
+                                    System.out.println("尾2: "+excelCell.substring(excelCell.length()-2,excelCell.length()-1));
+                                    if (excelCell.substring(0,1).equals("*")){                                              // "*"號在第一個 => 看前一個組欄位
+                                        System.out.println("進入 頭為*");
+                                        String preexcelCell = row.getCell(j-1)+"";                                // 抓前一個欄位名稱
+                                        if(preexcelCell.contains("!")) preexcelCell = preexcelCell.substring(0,preexcelCell.length()-1);
+                                        System.out.println("pre excel cell: "+preexcelCell);
+                                        System.out.println("前一欄值: "+item.getValue("Page Three." +preexcelCell));
+                                        if(item.getValue("Page Three." +preexcelCell)==""){                             // 前一欄位沒有值
+                                            continue;
+                                        }else {                                                                             // 前一個欄位有值 => 當字串填入
+                                            String value = excelCell.substring(1, excelCell.length()-1);
+                                            Description += value;
+                                        }
+                                    }else if(excelCell.substring(excelCell.length()-2,excelCell.length()-1).equals("*")){     // "*"號在倒數第二個 => 看後一個欄位
+                                        System.out.println("進入 尾為*");
+                                        String postexcelCell = row.getCell(j+1)+"";                               // 抓後一個欄位名稱
+                                        if(postexcelCell.contains("!")) postexcelCell = postexcelCell.substring(0,postexcelCell.length()-1);
+                                        System.out.println("post excel cell: "+postexcelCell);
+                                        System.out.println("後一欄值: "+item.getValue("Page Three." +postexcelCell));
+                                        if(item.getValue("Page Three." +postexcelCell)==""){                             // 後一欄位沒有值
+                                            continue;
+                                        }else {                                                                             // 後一個欄位有值 => 當字串填入
+                                            String value = excelCell.substring(0, (excelCell.length()-2));
+                                            Description += value ;
+                                        }
                                     }
-                                }else if(excelCell.substring(excelCell.length(),excelCell.length())=="*"){      // "*"號在最後一個 => 看後一個欄位
-                                    String postexcelCell = row.getCell(j+1)+"";                        // 抓後一個欄位名稱
-                                    if(item.getValue(postexcelCell)==""){                                        // 後一欄位沒有值
-                                        continue;
-                                    }else {                                                                     // 後一個欄位有值 => 當字串填入
-                                        String value = excelCell.substring(0, (excelCell.length()-1));
-                                        Description += value + " ";
+                                }else{
+                                    System.out.println(excelCell+" Contain *");
+                                    System.out.println("頭: "+excelCell.substring(0,1));
+                                    System.out.println("尾: "+excelCell.substring(excelCell.length()-1,excelCell.length()));
+                                    if (excelCell.substring(0,1).equals("*")){                                              // "*"號在第一個 => 看前一個組欄位
+                                        System.out.println("進入 頭為*");
+                                        String preexcelCell = row.getCell(j-1)+"";                                // 抓前一個欄位名稱
+                                        if(preexcelCell.contains("!")) preexcelCell = preexcelCell.substring(0,preexcelCell.length()-1);
+                                        System.out.println("pre excel cell: "+preexcelCell);
+                                        System.out.println("前一欄值: "+item.getValue("Page Three." +preexcelCell));
+                                        if(item.getValue("Page Three." +preexcelCell)==""){                             // 前一欄位沒有值
+                                            continue;
+                                        }else {                                                                             // 前一個欄位有值 => 當字串填入
+                                            String value = excelCell.substring(1, excelCell.length());
+                                            Description += value + " ";
+                                        }
+                                    }else if(excelCell.substring(excelCell.length()-1,excelCell.length()).equals("*")){     // "*"號在最後一個 => 看後一個欄位
+                                        System.out.println("進入 尾為*");
+                                        String postexcelCell = row.getCell(j+1)+"";                               // 抓後一個欄位名稱
+                                        if(postexcelCell.contains("!")) postexcelCell = postexcelCell.substring(0,postexcelCell.length()-1);
+                                        System.out.println("post excel cell: "+postexcelCell);
+                                        System.out.println("後一欄值: "+item.getValue("Page Three." +postexcelCell));
+                                        if(item.getValue("Page Three." +postexcelCell)==""){                             // 後一欄位沒有值
+                                            continue;
+                                        }else {                                                                             // 後一個欄位有值 => 當字串填入
+                                            String value = excelCell.substring(0, (excelCell.length()-1));
+                                            Description += value + " ";
+                                        }
                                     }
                                 }
-                            } else if (item.getCell("Page Three." + excelCell) == null) { // System no this field  (要用getCell !!!)
+
+
+                            } else if (item.getCell("Page Three." + excelCell) == null && (!excelCell.contains("!"))) { // System no this field  (要用getCell !)
                                 //System.out.println(item.getCell(1541).getName());
                                 System.out.println("no field:" + row.getCell(j));
                                 Description += "█" + item + ":no field:" + row.getCell(j) + " ";
                             } else {// excel field==PLM field
+                                if(excelCell.contains("!")){
+                                    String NewExcelCell = excelCell.substring(0, excelCell.length() - 1);
+                                    IAgileClass cls = item.getAgileClass();
+                                    IAttribute atr = cls.getAttribute("Page Three." + NewExcelCell);
+                                    System.out.println(atr.getDataType());
+                                    if (atr.getDataType() == 2) { // 組成為text
+                                        if (item.getValue("Page Three." + NewExcelCell).toString() == "") {   // 若有對應的text，但是沒值
+                                            System.out.println("Field Name:" + NewExcelCell + " -> No Value");
+                                            continue;
+                                        } else {
+                                            String ProductNameValue = item.getValue("Page Three." + NewExcelCell) + "";
+                                            Description += ProductNameValue ;
+                                            System.out.println("**" + NewExcelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
+                                            continue;
+                                        }
+                                    } else if (atr.getDataType() == 4) {// 組成為list   // list 加其description 不直接加 name
+                                        if (item.getValue("Page Three." + NewExcelCell).toString() == "") {   // 若有對應的list，但是沒值
+                                            System.out.println("Field Name:" + NewExcelCell + " -> No Value");
+                                            continue;
+                                        }else{
+                                            String tmp2 = item.getValue("Page Three." + NewExcelCell).toString();
+                                            ICell listCell2 = item.getCell("Page Three." + NewExcelCell);
+                                            IAgileList list2 = (IAgileList) listCell2.getValue();
+                                            String ProductNameValue = ((IAgileList) list2.getChild(tmp2)).getDescription();                  // get the description of option in the list
+                                            System.out.println("ProductNameValue: "+ProductNameValue);
+                                            if (ProductNameValue == null) {
+                                                ProductNameValue = "";
+                                                Description += ProductNameValue;
+                                                System.out.println("**" + NewExcelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
+                                                continue;
+                                            }
+                                            Description += ProductNameValue;
+                                            System.out.println("**" + NewExcelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
+                                        }
+                                    }
 
-                                IAgileClass cls = item.getAgileClass();
-                                IAttribute atr = cls.getAttribute("Page Three." + excelCell);
-                                System.out.println(atr.getDataType());
-                                if (atr.getDataType() == 2) { // 組成為text
-                                    String ProductNameValue = item.getValue("Page Three." + excelCell) + "";
-                                    Description += ProductNameValue + " ";
-                                    System.out.println("**" + excelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
-                                } else if (atr.getDataType() == 4) {// 組成為list
-                                    // list 加其description 不直接加 name
-                                    if (item.getValue("Page Three." + excelCell).toString() == "") {   // 若有對應的list，但是沒值
-                                        System.out.println("Field Name:" + excelCell + " -> No Value");
-                                        continue;
+                                }else{
+                                    IAgileClass cls = item.getAgileClass();
+                                    IAttribute atr = cls.getAttribute("Page Three." + excelCell);
+                                    System.out.println(atr.getDataType());
+                                    if (atr.getDataType() == 2) { // 組成為text
+                                        if (item.getValue("Page Three." + excelCell).toString() == "") {   // 若有對應的text，但是沒值
+                                            System.out.println("Field Name:" + excelCell + " -> No Value");
+                                            continue;
+                                        } else {
+                                            String ProductNameValue = item.getValue("Page Three." + excelCell) + "";
+                                            Description += ProductNameValue + " ";
+                                            System.out.println("**" + excelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
+                                            continue;
+                                        }
+                                    } else if (atr.getDataType() == 4) {// 組成為list   // list 加其description 不直接加 name
+                                        if (item.getValue("Page Three." + excelCell).toString() == "") {   // 若有對應的list，但是沒值
+                                            System.out.println("Field Name:" + excelCell + " -> No Value");
+                                            continue;
+                                        }else{
+                                            String tmp2 = item.getValue("Page Three." + excelCell).toString();
+                                            ICell listCell2 = item.getCell("Page Three." + excelCell);
+                                            IAgileList list2 = (IAgileList) listCell2.getValue();
+                                            String ProductNameValue = ((IAgileList) list2.getChild(tmp2)).getDescription();                  // get the description of option in the list
+                                            System.out.println("ProductNameValue: "+ProductNameValue);
+                                            if (ProductNameValue == null) {
+                                                ProductNameValue = "";
+                                                Description += ProductNameValue;
+                                                System.out.println("**" + excelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
+                                                continue;
+                                            }
+                                            Description += ProductNameValue + " ";
+                                            System.out.println("**" + excelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
+                                        }
                                     }
-                                    String tmp2 = item.getValue("Page Three." + excelCell).toString();
-                                    ICell listCell2 = item.getCell("Page Three." + excelCell);
-                                    IAgileList list2 = (IAgileList) listCell2.getValue();
-                                    String ProductNameValue = ((IAgileList) list2.getChild(tmp2)).getDescription();
-                                    if (ProductNameValue == null) {
-                                        ProductNameValue = "";
-                                        Description += ProductNameValue;
-                                        System.out.println("**" + excelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
-                                        continue;
-                                    }
-                                    Description += ProductNameValue + " ";
-                                    System.out.println("**" + excelCell + "::ProductNameValue:" + ProductNameValue + ",ProductName:" + Description);
                                 }
+
+
                             }
                         }
                     }

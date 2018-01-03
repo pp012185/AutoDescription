@@ -13,6 +13,10 @@ public class Split {
         String b2 = b[1];
         System.out.println(b1);
         System.out.println(b2);
+        String c = "*V";
+        System.out.println("TEST "+c.substring(0,1));
+        System.out.println(c.substring(0,1).equals("*"));
+        System.out.println((c.contains("*")));
 
     }
 }
