@@ -8,8 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4f13b07e-12fa-4a05-9ef0-0ad252a3d339" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/AutoDescription.java" afterPath="$PROJECT_DIR$/src/AutoDescription.java" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/services/com.agile.px.ICustomAction" afterPath="$PROJECT_DIR$/src/META-INF/services/com.agile.px.ICustomAction" />
+      <change beforePath="$PROJECT_DIR$/src/AutoDescription_Items.java" afterPath="$PROJECT_DIR$/src/AutoDescription_Items.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,7 +23,7 @@
       <file leaf-file-name="AddDescriptionFromExcel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AddDescriptionFromExcel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1392">
+            <state relative-caret-position="1680">
               <caret line="70" column="85" lean-forward="false" selection-start-line="70" selection-start-column="85" selection-end-line="70" selection-end-column="85" />
               <folding />
             </state>
@@ -34,7 +33,7 @@
       <file leaf-file-name="AutoDescription.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AutoDescription.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-96">
+            <state relative-caret-position="264">
               <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
               <folding />
             </state>
@@ -44,8 +43,8 @@
       <file leaf-file-name="AutoDescription_Items.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutoDescription_Items.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="26" column="51" lean-forward="true" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+            <state relative-caret-position="275">
+              <caret line="108" column="78" lean-forward="true" selection-start-line="108" selection-start-column="78" selection-end-line="108" selection-end-column="78" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -118,8 +117,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -142,8 +139,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -299,7 +298,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41847205" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19688842" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19957082" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -324,6 +323,40 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/AddDescriptionFromExcel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1680">
+          <caret line="70" column="85" lean-forward="false" selection-start-line="70" selection-start-column="85" selection-end-line="70" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutoDescription.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Split.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutoDescription_Items.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="25" column="60" lean-forward="true" selection-start-line="25" selection-start-column="60" selection-end-line="25" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AddDescriptionFromExcel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1392">
@@ -407,7 +440,7 @@
     <entry file="file://$PROJECT_DIR$/src/readExcel.java" />
     <entry file="file://$PROJECT_DIR$/src/AddDescriptionFromExcel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1392">
+        <state relative-caret-position="1680">
           <caret line="70" column="85" lean-forward="false" selection-start-line="70" selection-start-column="85" selection-end-line="70" selection-end-column="85" />
           <folding />
         </state>
@@ -430,7 +463,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutoDescription.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-96">
+        <state relative-caret-position="264">
           <caret line="11" column="27" lean-forward="false" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
           <folding />
         </state>
@@ -438,8 +471,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AutoDescription_Items.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="26" column="51" lean-forward="true" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+        <state relative-caret-position="275">
+          <caret line="108" column="78" lean-forward="true" selection-start-line="108" selection-start-column="78" selection-end-line="108" selection-end-column="78" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
