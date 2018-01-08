@@ -1,22 +1,23 @@
 public class Split {
     public static void main(String[] args) {
-        String str = "If,Kind,N-CH MOSFET=>EX20.1,P-CH MOSFET=>EX20.2";
+        String str = "5780｜QC";
         System.out.println(str.contains("If"));
-        String[] a = str.split(",");
-//        System.out.println(a);
-        for (int i = 0 ; i<a.length;i++){
-            System.out.println(a[i]);
+        String[] a = str.split("｜");
+        System.out.println(a);
 
-        }
-        String[] b = a[2].split("=>");
-        String b1 = b[0];
-        String b2 = b[1];
-        System.out.println(b1);
-        System.out.println(b2);
+        System.out.println(SplitString(str));
         String c = "*V";
         System.out.println("TEST "+c.substring(0,1));
         System.out.println(c.substring(0,1).equals("*"));
         System.out.println((c.contains("*")));
 
+    }
+
+
+
+    private static String SplitString(String ProductNameValue)
+    {
+        String[] value =  ProductNameValue.split("｜");
+        return value[1];
     }
 }

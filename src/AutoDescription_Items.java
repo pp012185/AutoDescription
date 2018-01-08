@@ -267,5 +267,12 @@ public class AutoDescription_Items implements ICustomAction{
         }
      return value;
     }
+
+    private static String SplitString(String ProductNameValue)
+    {
+        String[] value =  ProductNameValue.split("｜");
+        return value[1];
+    }
+
 }
 
