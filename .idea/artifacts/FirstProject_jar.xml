@@ -3,14 +3,11 @@
     <output-path>$PROJECT_DIR$/out/artifacts/FirstProject_jar</output-path>
     <root id="archive" name="FirstProject.jar">
       <element id="module-output" name="FirstProject" />
-      <element id="extracted-dir" path="D:/pp/anselm/AgileAPI.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="D:/pp/anselm/pxapi.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="D:/pp/anselm/poi-examples-3.17.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="D:/pp/anselm/poi-excelant-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/pp/anselm/9.3.4/AgileAPI.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/pp/anselm/9.3.4/pxapi.jar" path-in-jar="/" />
       <element id="extracted-dir" path="D:/pp/anselm/poi-ooxml-3.17.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="D:/pp/anselm/poi-ooxml-schemas-3.17.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="D:/pp/anselm/poi-scratchpad-3.17.jar" path-in-jar="/" />
       <element id="extracted-dir" path="D:/pp/anselm/poi-3.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="D:/pp/anselm/poi-ooxml-schemas-3.17.jar" path-in-jar="/" />
       <element id="directory" name="META-INF" />
     </root>
   </artifact>
