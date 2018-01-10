@@ -32,19 +32,38 @@ public class AutoDescription_Items implements ICustomAction{
                 System.out.println();
                 System.out.println("Part Number: " + itemNumber);
 
-                result+= readExcel(filepath, item);
-                System.out.println("Result: " + result);
-                item.setValue(ItemConstants.ATT_TITLE_BLOCK_DESCRIPTION,result);
+                String phase =obj.getCell(ItemConstants.ATT_TITLE_BLOCK_LIFECYCLE_PHASE).toString();
+                System.out.println("phase: "+ phase);
 
-                // a=readExcelList("10","EMB (Y/N)","No",filepath);
+                ITable pending_tb = obj.getTable(ItemConstants.TABLE_PENDINGCHANGES);
+                Iterator it = pending_tb.iterator();
+                String status ="";
+                if (it.hasNext())
+                {
+                    IRow row = (IRow) it.next();
+                    status = row.getValue(ItemConstants.ATT_PENDING_CHANGES_STATUS).toString();
+                    System.out.println("status: "+status);
+                }
+                System.out.println("CE? "+(status.equals("CE")));
+                System.out.println("Preliminary? "+(phase.equals("Preliminary")));
+                if(status.equals("CE") ||phase.equals("Preliminary"))
+                {
+                    System.out.println("開始Auto Description");
+                    result+= readExcel(filepath, item);
+                    System.out.println("Result: " + result);
+                    //item.setValue(ItemConstants.ATT_TITLE_BLOCK_DESCRIPTION,result);
+
+                    // a=readExcelList("10","EMB (Y/N)","No",filepath);
+                }
+
 
             } catch (APIException e1) {
             e1.printStackTrace();
-        } catch (Exception e1) {
+            } catch (Exception e1) {
             e1.printStackTrace();
-        }
+            }
         System.out.println("------ End ------");
-        return new ActionResult(0,"Success: "+a);
+        return new ActionResult(0,"Success: ");
     }
 
 
@@ -80,6 +99,8 @@ public class AutoDescription_Items implements ICustomAction{
                     e.printStackTrace();
                     continue;
                 }
+                subNum = subNum + ".0";
+                System.out.println("subnum= "+subNum);
                 System.out.println("DES: "+DES);
                 System.out.println("Cell 3: "+sub );
                 System.out.println(subClass.equals(sub)); // T or F
@@ -166,6 +187,7 @@ public class AutoDescription_Items implements ICustomAction{
                     // ICell listCell2 = item.getCell("Page Three." + NewExcelCell);
                     // IAgileList list2 = (IAgileList) listCell2.getValue();
                     // String ProductNameValue = ((IAgileList) list2.getChild(tmp2)).getDescription();               // get the description of option in the list
+                    System.out.println("subnum= "+subNum);
                     String ProductNameValue = readExcelList(subNum , NewExcelCell, item.getValue("Page Three." + NewExcelCell).toString(), path);
                     System.out.println("List item Description Value: "+ProductNameValue);
                     if (ProductNameValue == "") {                                         // list item 的description 沒有值=>null
@@ -302,15 +324,15 @@ public class AutoDescription_Items implements ICustomAction{
         for(int i=1;i< rowlength;i++) {
             row = sheet.getRow(i);
             Cell cell = row.getCell(0);           // excel cell is numeric => 10.0
-            cell.setCellType(Cell.CELL_TYPE_STRING);    // change to string => 10
-            System.out.println(cell + "== " + subclassNum);
+            //cell.setCellType(Cell.CELL_TYPE_STRING);    // change to string => 10
+            System.out.println(cell.toString() + "== " + subclassNum);
             if (cell.toString().equals(subclassNum) ) count1++;
         }
         System.out.println("count1: "+ count1);
         for(int i=1;i< rowlength;i++){
             row = sheet.getRow(i);
             Cell cell = row.getCell(0);
-            cell.setCellType(Cell.CELL_TYPE_STRING);
+            //cell.setCellType(Cell.CELL_TYPE_STRING);
             System.out.println(cell );
             if (cell.toString().equals(subclassNum)) {
                 System.out.println("i = "+i);
@@ -346,5 +368,7 @@ public class AutoDescription_Items implements ICustomAction{
         }
         return value;
     }
+
+
 }
 

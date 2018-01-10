@@ -7,15 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f13b07e-12fa-4a05-9ef0-0ad252a3d339" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/FirstProject_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/FirstProject_jar.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/FirstProject_jar/FirstProject.jar" afterPath="$PROJECT_DIR$/out/artifacts/FirstProject_jar/FirstProject.jar" />
-      <change beforePath="$PROJECT_DIR$/out/production/FirstProject/AutoDescription_Items.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/FirstProject/Split.class" afterPath="$PROJECT_DIR$/out/production/FirstProject/Split.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/FirstProject/ttest.class" afterPath="$PROJECT_DIR$/out/production/FirstProject/ttest.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/FirstProject/AutoDescription_Items.class" afterPath="$PROJECT_DIR$/out/production/FirstProject/AutoDescription_Items.class" />
+      <change beforePath="$PROJECT_DIR$/src/AutoDescription_Event.java" afterPath="$PROJECT_DIR$/src/AutoDescription_Event.java" />
       <change beforePath="$PROJECT_DIR$/src/AutoDescription_Items.java" afterPath="$PROJECT_DIR$/src/AutoDescription_Items.java" />
-      <change beforePath="$PROJECT_DIR$/src/Split.java" afterPath="$PROJECT_DIR$/src/Split.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,8 +26,8 @@
       <file leaf-file-name="AutoDescription_Items.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AutoDescription_Items.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2771">
-              <caret line="200" column="45" lean-forward="false" selection-start-line="200" selection-start-column="45" selection-end-line="200" selection-end-column="45" />
+            <state relative-caret-position="601">
+              <caret line="310" column="0" lean-forward="true" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getString_DollarSigns#0;class#AutoDescription_Items#0" expanded="false" />
@@ -45,10 +41,14 @@
       <file leaf-file-name="AutoDescription_Event.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AutoDescription_Event.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="6" column="34" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="34" />
+            <state relative-caret-position="3648">
+              <caret line="304" column="0" lean-forward="false" selection-start-line="304" selection-start-column="0" selection-end-line="304" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#getString_DollarSigns#0;class#AutoDescription_Event#0" expanded="false" />
+                <element signature="method#getString_NoSigns#0;class#AutoDescription_Event#0" expanded="false" />
+                <element signature="method#getString_Asterisk#0;class#AutoDescription_Event#0" expanded="false" />
+                <element signature="method#SplitString#0;class#AutoDescription_Event#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -67,7 +67,7 @@
       <file leaf-file-name="Split.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Split.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="797">
+            <state relative-caret-position="792">
               <caret line="39" column="41" lean-forward="false" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -108,16 +108,17 @@
         <option value="$PROJECT_DIR$/src/AutoDescription.java" />
         <option value="$PROJECT_DIR$/src/ttest.java" />
         <option value="$PROJECT_DIR$/src/Split.java" />
+        <option value="$PROJECT_DIR$/src/META-INF/services/com.agile.px.IEventAction" />
         <option value="$PROJECT_DIR$/src/AutoDescription_Items.java" />
         <option value="$PROJECT_DIR$/src/AutoDescription_Event.java" />
-        <option value="$PROJECT_DIR$/src/META-INF/services/com.agile.px.IEventAction" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="976" />
-    <option name="height" value="1038" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="615" />
+    <option name="y" value="29" />
+    <option name="width" value="1314" />
+    <option name="height" value="901" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -157,8 +158,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -182,14 +184,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../practice3_event" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../practice4_event" />
     <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RunDashboard">
@@ -342,7 +343,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -358,7 +359,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41847205" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17811158" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27092275" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -378,11 +379,43 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/ttest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Split.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="39" column="41" lean-forward="false" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutoDescription_Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="30" column="19" lean-forward="false" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getString_DollarSigns#0;class#AutoDescription_Event#0" expanded="false" />
+            <element signature="method#getString_NoSigns#0;class#AutoDescription_Event#0" expanded="false" />
+            <element signature="method#getString_Asterisk#0;class#AutoDescription_Event#0" expanded="false" />
+            <element signature="method#SplitString#0;class#AutoDescription_Event#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AutoDescription_Items.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -695,23 +728,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Split.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="797">
+        <state relative-caret-position="792">
           <caret line="39" column="41" lean-forward="false" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AutoDescription_Items.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2771">
-          <caret line="200" column="45" lean-forward="false" selection-start-line="200" selection-start-column="45" selection-end-line="200" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getString_DollarSigns#0;class#AutoDescription_Items#0" expanded="false" />
-            <element signature="method#getString_Asterisk#0;class#AutoDescription_Items#0" expanded="false" />
-            <element signature="method#SplitString#0;class#AutoDescription_Items#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -724,12 +744,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AutoDescription_Event.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.092/AutoDescription_Items.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="34" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="34" />
+        <state relative-caret-position="696">
+          <caret line="86" column="29" lean-forward="false" selection-start-line="86" selection-start-column="23" selection-end-line="86" selection-end-column="29" />
+          <folding>
+            <marker date="1515572912000" expanded="true" signature="0:104" ph="/.../" />
+            <marker date="1515572912000" expanded="false" signature="113:773" ph="..." />
+            <marker date="1515572912000" expanded="true" signature="872:879" ph="{}" />
+            <marker date="1515572912000" expanded="true" signature="967:2628" ph="{...}" />
+            <marker date="1515572912000" expanded="true" signature="2707:7081" ph="{...}" />
+            <marker date="1515572912000" expanded="true" signature="7166:7427" ph="{...}" />
+            <marker date="1515572912000" expanded="true" signature="7548:11084" ph="{...}" />
+            <marker date="1515572912000" expanded="true" signature="11221:15511" ph="{...}" />
+            <marker date="1515572912000" expanded="true" signature="15576:15662" ph="{...}" />
+            <marker date="1515572912000" expanded="true" signature="15797:18468" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutoDescription_Items.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="310" column="0" lean-forward="true" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#getString_DollarSigns#0;class#AutoDescription_Items#0" expanded="false" />
+            <element signature="method#getString_Asterisk#0;class#AutoDescription_Items#0" expanded="false" />
+            <element signature="method#SplitString#0;class#AutoDescription_Items#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AutoDescription_Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3648">
+          <caret line="304" column="0" lean-forward="false" selection-start-line="304" selection-start-column="0" selection-end-line="304" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getString_DollarSigns#0;class#AutoDescription_Event#0" expanded="false" />
+            <element signature="method#getString_NoSigns#0;class#AutoDescription_Event#0" expanded="false" />
+            <element signature="method#getString_Asterisk#0;class#AutoDescription_Event#0" expanded="false" />
+            <element signature="method#SplitString#0;class#AutoDescription_Event#0" expanded="false" />
           </folding>
         </state>
       </provider>
