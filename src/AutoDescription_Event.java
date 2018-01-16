@@ -30,29 +30,31 @@ public class AutoDescription_Event implements IEventAction{
             System.out.println();
             System.out.println("Part Number: " + itemNumber);
 
-            ITable pending_tb = obj.getTable(ItemConstants.TABLE_PENDINGCHANGES);
-            Iterator it = pending_tb.iterator();
-            String status ="";
-            if (it.hasNext())
+            System.out.println(item.getRevision().toString()+"!");
+            if(item.getRevision().toString().equals("Introductory"))
             {
-                IRow row = (IRow) it.next();
-                status = row.getValue(ItemConstants.ATT_PENDING_CHANGES_STATUS).toString();
-                System.out.println("status: "+status);
+                System.out.println("執行AutoDescription");
+                result+= readExcel(filepath, item);
+                System.out.println("Result: " + result);
+                if(!item.getValue(ItemConstants.ATT_TITLE_BLOCK_DESCRIPTION).toString().equals(result)) {
+                    item.setValue(ItemConstants.ATT_TITLE_BLOCK_DESCRIPTION,result);
+                }
+            }else{
+                ITable t2 = item.getTable(ItemConstants.TABLE_REDLINETITLEBLOCK);
+                Iterator j = t2.getTableIterator();
+                IRow row = (IRow) j.next();
+                String newnumber = row.getValue(ItemConstants.ATT_TITLE_BLOCK_NUMBER).toString();
+                System.out.println("New part number: "+ newnumber);
+                System.out.println("是否為正式料號? "+ (!newnumber.startsWith("P")));
+                if(newnumber.startsWith("P")){
+                    System.out.println("執行AutoDescription");
+                    result+= readExcel(filepath, item);
+                    System.out.println("Result: " + result);
+                    if(!item.getValue(ItemConstants.ATT_TITLE_BLOCK_DESCRIPTION).toString().equals(result)) {
+                        item.setValue(ItemConstants.ATT_TITLE_BLOCK_DESCRIPTION,result);
+                    }
+                }
             }
-            System.out.println(item.getRevision().toString());
-            item.setRevision(item.getRevision().toString());
-            ITable t2 = item.getTable(ItemConstants.TABLE_REDLINETITLEBLOCK);
-            Iterator j = t2.getTableIterator();
-            IRow row = (IRow) j.next();
-            String newnumber = row.getValue(ItemConstants.ATT_TITLE_BLOCK_NUMBER).toString();
-            System.out.println("New part number: "+ newnumber);
-            System.out.println("是否為正式料號? "+ (!newnumber.startsWith("P")));
-
-            result+= readExcel(filepath, item);
-            System.out.println("Result: " + result);
-            //item.setValue(ItemConstants.ATT_TITLE_BLOCK_DESCRIPTION,result);
-
-
 
         } catch (APIException e) {
             e.printStackTrace();
@@ -83,13 +85,12 @@ public class AutoDescription_Event implements IEventAction{
                 System.out.println("開始找Subclass");
                 String sub = "";   // Subclass
                 String subNum = "";// Subclass number
-                String DES = "";   // 正確字串長相
                 try {
                     row = sheet.getRow(i);
                     sub = row.getCell(2).toString();
                     subNum = sub.substring(1,3);
                     sub = sub.substring(1,3) + sub.substring(4,sub.length());
-                    DES = row.getCell(3).toString();
+                    //DES = row.getCell(3).toString();
                 }catch (NullPointerException e)
                 {
                     e.getMessage();
@@ -98,7 +99,6 @@ public class AutoDescription_Event implements IEventAction{
                 }
                 subNum = subNum + ".0";
                 System.out.println("subnum= "+subNum);
-                System.out.println("DES: "+DES);
                 System.out.println("Cell 3: "+sub );
                 System.out.println(subClass.equals(sub)); // T or F
                 if (subClass.equals(sub)) {                             // match subclass
@@ -108,18 +108,24 @@ public class AutoDescription_Event implements IEventAction{
                             if (excelCell.equals("end")) {              // end -> break
                                 break;
                             } else if (excelCell.contains("$")) {       // e.g. $abc -> abc
-                                System.out.println("$: "+getString_DollarSigns(excelCell));
+                                System.out.println("$: " + getString_DollarSigns(excelCell));
                                 Description += getString_DollarSigns(excelCell);
                                 continue;
-                            }else if(excelCell.contains("*")){
-                                String preexcelCell = row.getCell(j-1)+"";                                  // 抓前一個欄位名稱
-                                String postexcelCell = row.getCell(j + 1) + "";                             // 抓後一個欄位名稱
-                                String value = getString_Asterisk(excelCell,item,preexcelCell,postexcelCell);
+                            } else if (excelCell.contains("*")) {
+                                String preexcelCell = row.getCell(j - 1) + "";            // 抓前一個欄位名稱
+                                String postexcelCell = row.getCell(j + 1) + "";       // 抓後一個欄位名稱
+                                String value = getString_Asterisk(excelCell, item, preexcelCell, postexcelCell);
                                 System.out.println("Asterisk: " + value);
+                                Description += value;
+                                System.out.println("**" + excelCell + "::Value:" + value + ",ProductName:" + Description);
+                                continue;
+                            }else if(excelCell.equals("Process Type") || excelCell.equals("Process Type!")){
+                                String value = getProcessType(excelCell,item);
+                                System.out.println("Process Type: " + value);
                                 Description += value;
                                 System.out.println("**" + excelCell+ "::Value:" +value + ",ProductName:" + Description);
                                 continue;
-                            } else if (item.getCell("Page Three." + excelCell) == null && (!excelCell.contains("!"))) { // System no this field  (要用getCell !)
+                            }else if (item.getCell("Page Three." + excelCell) == null && (!excelCell.contains("!"))) { // System no this field  (要用getCell !)
                                 System.out.println("no field:" + row.getCell(j));
                                 Description += "█" + item + ":no field:" + row.getCell(j) + " ";
                                 continue;
@@ -140,7 +146,7 @@ public class AutoDescription_Event implements IEventAction{
                 if (!Description.equals("")) {
                     result = Description;
                     System.out.println(result);
-                    System.out.println(DES);
+                    //System.out.println(DES);
                     break;
                 }
             }
@@ -321,7 +327,6 @@ public class AutoDescription_Event implements IEventAction{
             row = sheet.getRow(i);
             Cell cell = row.getCell(0);           // excel cell is numeric => 10.0
             //cell.setCellType(Cell.CELL_TYPE_STRING);    // change to string => 10
-            System.out.println(cell.toString() + "== " + subclassNum);
             if (cell.toString().equals(subclassNum) ) count1++;
         }
         System.out.println("count1: "+ count1);
@@ -329,12 +334,10 @@ public class AutoDescription_Event implements IEventAction{
             row = sheet.getRow(i);
             Cell cell = row.getCell(0);
             //cell.setCellType(Cell.CELL_TYPE_STRING);
-            System.out.println(cell );
             if (cell.toString().equals(subclassNum)) {
                 System.out.println("i = "+i);
                 for (int j = i; j < i+count1; j++) {
                     row = sheet.getRow(j);
-                    System.out.println(row.getCell(1).toString());
                     if (row.getCell(1).toString().equals(fieldName)) count2++;
                 }
                 System.out.println("count2: "+ count2);
@@ -346,7 +349,7 @@ public class AutoDescription_Event implements IEventAction{
                         for(int k = j; k < j+count2; k++)
                         {
                             row = sheet.getRow(k);
-                            System.out.println(row.getCell(2).toString());
+                            //System.out.println(row.getCell(2).toString());
                             if(row.getCell(2).toString().equals(fieldNameValue))
                             {
                                 System.out.println(row.getCell(3));
@@ -362,6 +365,36 @@ public class AutoDescription_Event implements IEventAction{
                 break;
             }
         }
+        return value;
+    }
+
+    private static String removespace(String col_name) {
+        String value ="";
+        value = col_name.replaceAll("\\s+","");
+        return value;
+    }
+
+    private static String getProcessType(String excelCell,IItem item) throws APIException {
+        String value="";
+        if(excelCell.contains("!")) {
+            String NewExcelCell = excelCell.substring(0, excelCell.length() - 1);
+            if (item.getValue("Page Two." + NewExcelCell) == "" || item.getValue("Page Two." + NewExcelCell) == null) {     // 若有對應的list，但是沒值
+                System.out.println("Field Name:" + NewExcelCell + " -> No Value");
+            } else {
+                String ProductNameValue = item.getValue("Page Two." + excelCell) + "";
+                System.out.println("List item Description Value: " + ProductNameValue);
+                value += ProductNameValue;
+            }
+        }else {
+            if (item.getValue("Page Two." + excelCell) == "" || item.getValue("Page Two." + excelCell) == null) {     // 若有對應的list，但是沒值
+                System.out.println("Field Name:" + excelCell + " -> No Value");
+            } else {
+                String ProductNameValue = item.getValue("Page Two." + excelCell) + "";
+                System.out.println("List item Description Value: " + ProductNameValue);
+                value += ProductNameValue;
+            }
+        }
+        if(value.equals("SMT")) value = "SMD";
         return value;
     }
 
